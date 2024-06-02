@@ -1,5 +1,6 @@
 substitutions:
   name: zehnder-comfoair-can-monitor
+  friendly_name: Zehnder ComfoAir CAN Monitor
   filter_time: 5s
   filter_send_every: '1'
   filter_window_size: '3'
@@ -13,11 +14,12 @@ packages:
     files: 
       - packages/canbus.yml
       - packages/diagnostics.yml
+      - packages/sensors.yml
 
 esphome:
   name: ${name}
-  friendly_name: Zehnder ComfoAir CAN Monitor
-  comment: Zehnder ComfoAir Q350
+  friendly_name: ${friendly_name}
+  comment: Zehnder ComfoAir Q350 Monitor
 
 esp32:
   board: m5stack-atom
@@ -26,9 +28,12 @@ esp32:
 
 # Enable logging
 logger:
-  level: DEBUG
+  level: INFO
   logs:
     canbus: INFO
+
+binary_sensor:
+text_sensor:
 
 external_components:
   - source: github://dan-s-github/zehnder-comfoair-can-monitor
@@ -59,7 +64,7 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "${name}-fallback"
+    ssid: "comfoair-can-monitor-fallback"
     password: !secret fallback_hotspot_password
 
 captive_portal:

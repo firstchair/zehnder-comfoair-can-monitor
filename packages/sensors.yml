@@ -1,0 +1,86 @@
+.throttle-filter: &throttle-filter
+  - throttle_average: '${filter_time}'
+  - filter_out: nan
+  - sliding_window_moving_average: {send_every: '${filter_send_every}', window_size: '${filter_window_size}'}
+
+binary_sensor:
+  - platform: template
+    id: pdo_72     # PDO 72 (raw)
+    name: 'PDO 72'
+    icon: mdi:check-circle
+  - platform: template
+    id: pdo_115     # PDO 115 (raw)
+    name: 'PDO 115'
+    icon: mdi:check-circle
+  - platform: template
+    id: pdo_116     # PDO 116 (raw)
+    name: 'PDO 116'
+    icon: mdi:check-circle
+  - platform: template
+    id: pdo_229     # PDO 229 (raw)
+    name: 'PDO 229'
+    icon: mdi:check-circle
+
+sensor:
+  - platform: template
+    id: pdo_273 # PDO 273
+    name: 'PDO 273 delta T?'
+    filters: [multiply: 0.1]
+    accuracy_decimals: 1
+    unit_of_measurement: '°C'
+    device_class: temperature
+    state_class: measurement
+
+  - platform: template
+    id: pdo_305 # PDO 305
+    name: 'PDO 305'
+    accuracy_decimals: 0
+    unit_of_measurement: 'W'
+    device_class: power
+    state_class: measurement
+    filters: *throttle-filter
+
+  - platform: template
+    id: pdo_306 # PDO 306
+    name: 'PDO 306'
+    accuracy_decimals: 0
+    unit_of_measurement: 'W'
+    device_class: power
+    state_class: measurement
+    filters: *throttle-filter
+
+  - platform: template
+    id: analog_input_0_10v_1 # PDO 369
+    name: 'analog_input_0_10v_1'
+    filters: [multiply: 0.1]
+    accuracy_decimals: 2
+    unit_of_measurement: 'V'
+    device_class: voltage
+    state_class: measurement
+
+  - platform: template
+    id: analog_input_0_10v_2 # PDO 370
+    name: 'analog_input_0_10v_2'
+    filters: [multiply: 0.1]
+    accuracy_decimals: 2
+    unit_of_measurement: 'V'
+    device_class: voltage
+    state_class: measurement
+
+  - platform: template
+    id: analog_input_0_10v_3 # PDO 371
+    name: 'analog_input_0_10v_3'
+    filters: [multiply: 0.1]
+    accuracy_decimals: 2
+    unit_of_measurement: 'V'
+    device_class: voltage
+    state_class: measurement
+
+  - platform: template
+    id: analog_input_0_10v_4 # PDO 372
+    name: 'analog_input_0_10v_4'
+    filters: [multiply: 0.1]
+    accuracy_decimals: 2
+    unit_of_measurement: 'V'
+    device_class: voltage
+    state_class: measurement

@@ -16,6 +16,30 @@ canbus:
       - lambda: |-
           auto data_pretty = remote_transmission_request ? "n/a" : format_hex_pretty(x).c_str();
           if ((can_id & 0b11111000000000011111111000000) == 0b00000000000000000000001000000)
-            ESP_LOGD("comfoair_dump", "Node: %d, PDO: %d, rtr: %d, length: %d, content: %s (can_id: 0x%08x)", can_id & 0x3f, can_id >> 14, remote_transmission_request, x.size(), data_pretty, can_id);
+            ESP_LOGD("comfoair_dump_a", "CAN_ID: 0x%08x, Node: %d, PDO: %d, rtr: %d, length: %d, content: %s", can_id, can_id & 0x3f, can_id >> 14, remote_transmission_request, x.size(), data_pretty);
           else
-            ESP_LOGV("comfoair_dump", "can_id: 0x%08x, rtr: %d, length: %d, content: %s", can_id, remote_transmission_request, x.size(), data_pretty);
+            ESP_LOGD("comfoair_dump_x", "CAN_ID: 0x%08x, Node: %d, PDO: %d, rtr: %d, length: %d, content: %s", can_id, can_id & 0x3f, can_id >> 14, remote_transmission_request, x.size(), data_pretty);
+    - can_id:      0b00000000000000000000001000000
+      can_id_mask: 0b11111000000000011111111000000
+      use_extended_id: true
+      remote_transmission_request: false
+      then:
+        - lambda: |-
+            auto pdo_id = id(comfoair)->get_pdo_id_from_can_id (can_id); // need space for ESPHome not to try to interpret it as id(...)
+            switch (pdo_id)
+            {
+                comfoair_on_frame_case(72,  id(comfoair), pdo_72,                true);
+                comfoair_on_frame_case(115, id(comfoair), pdo_115,               true);
+                comfoair_on_frame_case(116, id(comfoair), pdo_116,               true);
+                comfoair_on_frame_case(225, id(comfoair), pdo_225,               true);
+                comfoair_on_frame_case(226, id(comfoair), pdo_226,               true);
+                comfoair_on_frame_case(229, id(comfoair), pdo_229,               true);
+                comfoair_on_frame_case(230, id(comfoair), pdo_230,               true);
+                comfoair_on_frame_case(273, id(comfoair), pdo_273,              false);
+                comfoair_on_frame_case(305, id(comfoair), pdo_305,               true);
+                comfoair_on_frame_case(306, id(comfoair), pdo_306,               true);
+                comfoair_on_frame_case(369, id(comfoair), analog_input_0_10v_1,  true);
+                comfoair_on_frame_case(370, id(comfoair), analog_input_0_10v_2,  true);
+                comfoair_on_frame_case(371, id(comfoair), analog_input_0_10v_3,  true);
+                comfoair_on_frame_case(372, id(comfoair), analog_input_0_10v_4,  true);
+            }
