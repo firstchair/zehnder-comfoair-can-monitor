@@ -28,18 +28,21 @@ canbus:
             auto pdo_id = id(comfoair)->get_pdo_id_from_can_id (can_id); // need space for ESPHome not to try to interpret it as id(...)
             switch (pdo_id)
             {
-                comfoair_on_frame_case(72,  id(comfoair), pdo_72,                true);
-                comfoair_on_frame_case(115, id(comfoair), pdo_115,               true);
-                comfoair_on_frame_case(116, id(comfoair), pdo_116,               true);
-                comfoair_on_frame_case(225, id(comfoair), pdo_225,               true);
-                comfoair_on_frame_case(226, id(comfoair), pdo_226,               true);
-                comfoair_on_frame_case(229, id(comfoair), pdo_229,               true);
-                comfoair_on_frame_case(230, id(comfoair), pdo_230,               true);
-                comfoair_on_frame_case(273, id(comfoair), pdo_273,              false);
-                comfoair_on_frame_case(305, id(comfoair), pdo_305,               true);
-                comfoair_on_frame_case(306, id(comfoair), pdo_306,               true);
-                comfoair_on_frame_case(369, id(comfoair), analog_input_0_10v_1,  true);
-                comfoair_on_frame_case(370, id(comfoair), analog_input_0_10v_2,  true);
-                comfoair_on_frame_case(371, id(comfoair), analog_input_0_10v_3,  true);
-                comfoair_on_frame_case(372, id(comfoair), analog_input_0_10v_4,  true);
+                comfoair_on_frame_case(72,  id(comfoair), pdo_72,                   true);
+                comfoair_on_frame_case(115, id(comfoair), pdo_115,                  true);
+                comfoair_on_frame_case(116, id(comfoair), pdo_116,                  true);
+                comfoair_on_frame_case(225, id(comfoair), comfortcontrol_mode,      true);
+                comfoair_on_frame_case(226, id(comfoair), fan_speed_mode_modulated, true);
+                comfoair_on_frame_case(229, id(comfoair), pdo_229,                  true);
+                comfoair_on_frame_case(230, id(comfoair), airflow_constraints,      true);
+                comfoair_on_frame_case(273, id(comfoair), pdo_273,                 false);
+                comfoair_on_frame_case(305, id(comfoair), pdo_305,                  true);
+                comfoair_on_frame_case(306, id(comfoair), pdo_306,                  true);
+                comfoair_on_frame_case(369, id(comfoair), analog_input_0_10v_1,     true);
+                comfoair_on_frame_case(370, id(comfoair), analog_input_0_10v_2,     true);
+                comfoair_on_frame_case(371, id(comfoair), analog_input_0_10v_3,     true);
+                comfoair_on_frame_case(372, id(comfoair), analog_input_0_10v_4,     true);
+                comfoair_on_frame_case(385, id(comfoair), pdo_385,                  true);
+                comfoair_on_frame_case(401, id(comfoair), pdo_401,                  true);
+                comfoair_on_frame_case(418, id(comfoair), pdo_418,                  true);
             }

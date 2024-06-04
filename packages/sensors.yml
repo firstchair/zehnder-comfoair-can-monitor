@@ -23,6 +23,28 @@ binary_sensor:
 
 sensor:
   - platform: template
+    id: comfortcontrol_mode # PDO 225 
+    name: 'Sensor based ventilation mode'
+    # accuracy_decimals: 0
+    # unit_of_measurement: '%'
+    # state_class: measurement
+
+  - platform: template
+    id: fan_speed_mode_modulated # PDO 226
+    name: 'Fan Speed (modulated)'
+    # accuracy_decimals: 0
+    # unit_of_measurement: '%'
+    # state_class: measurement
+
+  - platform: template
+    id: airflow_constraints # PDO 230
+    name: 'Airflow constraints'
+    # accuracy_decimals: 0
+    # unit_of_measurement: '%'
+    # state_class: measurement
+
+
+  - platform: template
     id: pdo_273 # PDO 273
     name: 'PDO 273 delta T?'
     filters: [multiply: 0.1]
@@ -84,3 +106,24 @@ sensor:
     unit_of_measurement: 'V'
     device_class: voltage
     state_class: measurement
+
+  - platform: template
+    id: pdo_385 # PDO 385
+    name: 'PDO 385'
+    # accuracy_decimals: 0
+    # unit_of_measurement: '%'
+    # state_class: measurement
+
+  - platform: template
+    id: pdo_401 # PDO 401
+    name: 'PDO 401'
+    # accuracy_decimals: 0
+    # unit_of_measurement: '%'
+    # state_class: measurement
+
+  - platform: template
+    id: pdo_418 # PDO 418
+    name: 'PDO 418'
+    # accuracy_decimals: 0
+    # unit_of_measurement: '%'
+    # state_class: measurement

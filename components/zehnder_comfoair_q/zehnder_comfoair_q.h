@@ -104,6 +104,12 @@ namespace zehnder_comfoair_q
                 else
                     publish_state(state_id, *((uint32_t *)&can_message[0]));
                 break;
+            case 8:
+                if (!is_unsigned)
+                    publish_state(state_id, *((int64_t *)&can_message[0]));
+                else
+                    publish_state(state_id, *((uint64_t *)&can_message[0]));
+                break;
             default:
                 ESP_LOGW("comfoair", "Unable to infer type from can message size: %d", can_message.size());
                 break;
