@@ -15,10 +15,11 @@ canbus:
       then:
       - lambda: |-
           auto data_pretty = remote_transmission_request ? "n/a" : format_hex_pretty(x).c_str();
+          ESP_LOGD("comfoair_dump", "CAN_ID_RAW: 0x%08x, rtr: %d, length: %d, content: %s ", can_id, remote_transmission_request, x.size(), data_pretty);
           if ((can_id & 0b11111000000000011111111000000) == 0b00000000000000000000001000000)
-            ESP_LOGD("comfoair_dump_a", "CAN_ID: 0x%08x, Node: %d, PDO: %d, rtr: %d, length: %d, content: %s", can_id, can_id & 0x3f, can_id >> 14, remote_transmission_request, x.size(), data_pretty);
+            ESP_LOGD("comfoair_dump_a", "CAN_ID_RAW: 0x%08x, Node: %d, PDO: %d, rtr: %d, length: %d, content: %s (can_id: 0x%08x)", can_id, can_id & 0x3f, can_id >> 14, remote_transmission_request, x.size(), data_pretty, can_id);
           else
-            ESP_LOGD("comfoair_dump_x", "CAN_ID: 0x%08x, Node: %d, PDO: %d, rtr: %d, length: %d, content: %s", can_id, can_id & 0x3f, can_id >> 14, remote_transmission_request, x.size(), data_pretty);
+            ESP_LOGD("comfoair_dump_x", "CAN_ID_RAW: 0x%08x, Node: %d, PDO: %d, rtr: %d, length: %d, content: %s (can_id: 0x%08x)", can_id, can_id & 0x3f, can_id >> 14, remote_transmission_request, x.size(), data_pretty, can_id);
     - can_id:      0b00000000000000000000001000000
       can_id_mask: 0b11111000000000011111111000000
       use_extended_id: true
