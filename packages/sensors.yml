@@ -5,17 +5,20 @@
 
 binary_sensor:
   - platform: template
-    id: pdo_72     # PDO 72 (raw)
-    name: 'PDO 72'
+    id: manual_mode     # PDO 72 (raw)
+    name: 'Manual mode'
     icon: mdi:check-circle
+
   - platform: template
     id: pdo_115     # PDO 115 (raw)
     name: 'PDO 115'
     icon: mdi:check-circle
+
   - platform: template
     id: pdo_116     # PDO 116 (raw)
     name: 'PDO 116'
     icon: mdi:check-circle
+
   - platform: template
     id: pdo_229     # PDO 229 (raw)
     name: 'PDO 229'
@@ -46,18 +49,20 @@ sensor:
     state_class: measurement
 
   - platform: template
-    id: pdo_305 # PDO 305
-    name: 'PDO 305'
-    accuracy_decimals: 0
+    id: exhaust_fan_power # PDO 305
+    name: 'Exhaust fan power'
+    filters: [multiply: 0.1]
+    accuracy_decimals: 2
     unit_of_measurement: 'W'
     device_class: power
     state_class: measurement
     filters: *throttle-filter
 
   - platform: template
-    id: pdo_306 # PDO 306
-    name: 'PDO 306'
-    accuracy_decimals: 0
+    id: supply_fan_power # PDO 306
+    name: 'Supply fan power'
+    filters: [multiply: 0.1]
+    accuracy_decimals: 2
     unit_of_measurement: 'W'
     device_class: power
     state_class: measurement
@@ -113,12 +118,12 @@ sensor:
     # unit_of_measurement: '%'
     # state_class: measurement
 
-  - platform: template
-    id: pdo_418 # PDO 418
-    name: 'PDO 418'
-    # accuracy_decimals: 0
-    # unit_of_measurement: '%'
-    # state_class: measurement
+ - platform: template
+    id: comfofond_ghe_state_perc # PDO 418
+    name: 'ComfoFond GHE State Percentage'
+    accuracy_decimals: 0
+    unit_of_measurement: '%'
+    state_class: measurement
 
 text_sensor:
   - platform: template
