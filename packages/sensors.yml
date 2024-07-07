@@ -51,8 +51,7 @@ sensor:
   - platform: template
     id: exhaust_fan_power # PDO 305
     name: 'Exhaust fan power'
-    filters: [multiply: 0.1]
-    accuracy_decimals: 2
+    accuracy_decimals: 0
     unit_of_measurement: 'W'
     device_class: power
     state_class: measurement
@@ -61,8 +60,7 @@ sensor:
   - platform: template
     id: supply_fan_power # PDO 306
     name: 'Supply fan power'
-    filters: [multiply: 0.1]
-    accuracy_decimals: 2
+    accuracy_decimals: 0
     unit_of_measurement: 'W'
     device_class: power
     state_class: measurement
@@ -120,7 +118,7 @@ sensor:
 
  - platform: template
     id: comfofond_ghe_state_perc # PDO 418
-    name: 'ComfoFond GHE State Percentage'
+    name: 'ComfoFond GHE State'
     accuracy_decimals: 0
     unit_of_measurement: '%'
     state_class: measurement
