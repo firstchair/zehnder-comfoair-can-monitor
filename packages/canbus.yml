@@ -1,6 +1,6 @@
 substitutions:
-  can_tx_pin: GPIO22
-  can_rx_pin: GPIO19
+  can_tx_pin: GPIO4
+  can_rx_pin: GPIO5
 
 canbus:
   - platform: esp32_can
